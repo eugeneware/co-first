@@ -1,0 +1,36 @@
+{
+  "name": "co-select",
+  "version": "0.0.1",
+  "description": "Yield the first async value returned for the co generator library",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha --harmony"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/co-select"
+  },
+  "keywords": [
+    "co",
+    "yield",
+    "first",
+    "select",
+    "wait",
+    "join",
+    "async",
+    "generator",
+    "generators"
+  ],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/eugeneware/co-select/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "expect.js": "~0.2.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "mocha": "~1.16.2",
+    "co": "~3.0.2"
+  }
+}
