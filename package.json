@@ -1,5 +1,5 @@
 {
-  "name": "co-select",
+  "name": "co-first",
   "version": "0.0.1",
   "description": "Yield the first async value returned for the co generator library",
   "main": "index.js",
