@@ -1,5 +1,5 @@
-module.exports = select;
-function select(asyncs, valuesOnly) {
+module.exports = first;
+function first(asyncs, valuesOnly) {
   var ctx = this;
   return function (cb) {
     var called = false;

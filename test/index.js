@@ -1,8 +1,8 @@
 var expect = require('expect.js'),
     co = require('co'),
-    select = require('..');
+    first = require('..');
 
-describe('co-select', function() {
+describe('co-first', function() {
   function makeAsynchrony(err, value) {
     var args = Array.prototype.slice.call(arguments);
     var ctx = this;
@@ -14,13 +14,13 @@ describe('co-select', function() {
     };
   }
 
-  it('should be able to select the first value', function(done) {
+  it('should be able to get the first result', function(done) {
     co(function *() {
       var a1 = makeAsynchrony(null, 1);
       var a2 = makeAsynchrony(null, 2);
-      var first = yield select([a2, a1]);
-      expect(first.caller).to.equal(a2);
-      expect(first.value).to.equal(2);
+      var firstResult = yield first([a2, a1]);
+      expect(firstResult.caller).to.equal(a2);
+      expect(firstResult.value).to.equal(2);
       done();
     })();
   });
@@ -29,7 +29,7 @@ describe('co-select', function() {
     co(function *() {
       var a1 = makeAsynchrony(null, 1);
       var a2 = makeAsynchrony(null, 2);
-      var firstValue = yield select([a2, a1], true);
+      var firstValue = yield first([a2, a1], true);
       expect(firstValue).to.equal(2);
       done();
     })();
@@ -41,7 +41,7 @@ describe('co-select', function() {
       var a1 = makeAsynchrony(null, 1);
       var a2 = makeAsynchrony(err, 2);
       try {
-        var first = yield select([a2, a1]);
+        var firstResult = yield first([a2, a1]);
       } catch (e) {
         expect(e).to.equal(err);
         done();
@@ -55,7 +55,7 @@ describe('co-select', function() {
       var a1 = makeAsynchrony(null, 1);
       var a2 = makeAsynchrony(err, 2);
       try {
-        var first = yield select([a2, a1], true);
+        var firstValue = yield first([a2, a1], true);
       } catch (e) {
         expect(e).to.equal(err);
         done();
@@ -67,9 +67,9 @@ describe('co-select', function() {
     co(function *() {
       var a1 = makeAsynchrony(null, 1);
       var a2 = makeAsynchrony(null, 2, 3);
-      var first = yield select([a2, a1]);
-      expect(first.caller).to.equal(a2);
-      expect(first.value).to.eql([2, 3]);
+      var firstResult = yield first([a2, a1]);
+      expect(firstResult.caller).to.equal(a2);
+      expect(firstResult.value).to.eql([2, 3]);
       done();
     })();
   });
@@ -78,7 +78,7 @@ describe('co-select', function() {
     co(function *() {
       var a1 = makeAsynchrony(null, 1);
       var a2 = makeAsynchrony(null, 2, 3);
-      var firstValue = yield select([a2, a1], true);
+      var firstValue = yield first([a2, a1], true);
       expect(firstValue).to.eql([2, 3]);
       done();
     })();

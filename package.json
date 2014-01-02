@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eugeneware/co-select"
+    "url": "https://github.com/eugeneware/co-first"
   },
   "keywords": [
     "co",
@@ -24,7 +24,7 @@
   "author": "Eugene Ware <eugene@noblesamurai.com>",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/eugeneware/co-select/issues"
+    "url": "https://github.com/eugeneware/co-first/issues"
   },
   "dependencies": {},
   "devDependencies": {

@@ -1,15 +1,15 @@
-# co-select
+# co-first
 
 Yield the first async value returned for the co generator library.
 
-[![build status](https://secure.travis-ci.org/eugeneware/co-select.png)](http://travis-ci.org/eugeneware/co-select)
+[![build status](https://secure.travis-ci.org/eugeneware/co-first.png)](http://travis-ci.org/eugeneware/co-first)
 
 ## Installation
 
 This module is installed via npm:
 
 ``` bash
-$ npm install co-select
+$ npm install co-first
 ```
 
 ## Background
@@ -35,27 +35,27 @@ returned, for example, in the event of a timeout:
 
 ### Returning first caller and value
 
-By default, ```co-select``` will return an object that contains both the
+By default, ```co-first``` will return an object that contains both the
 winning first async operation (on the ```caller``` property) and the value
 on the ```value``` property, allowing you to do a ```switch``` after the
-select to work out what happened:
+first to work out what happened:
 
 ``` js
 var co = require('co'),
-    select = require('co-select');
+    first = require('co-first');
 co(function *() {
   var a = yield asyncFunc1();
   var b = yield asyncFunc1();
 
   // wait for the FIRST of a and b to be returned
-  var first = yield select([a, b]);
-  switch (first.caller) {
+  var firstResult = yield first([a, b]);
+  switch (firstResult.caller) {
     case a:
-      var valA = first.value;
+      var valA = firstResult.value;
       break;
 
     case b:
-      var valB = first.value;
+      var valB = firstResult.value;
       break;
   }
 })();
@@ -68,13 +68,13 @@ When your asynchronous operations return the same value, then you can pass
 
 ``` js
 var co = require('co'),
-    select = require('co-select');
+    first = require('co-first');
 co(function *() {
   var a = yield asyncFunc1();
   var b = yield asyncFunc1();
 
   // wait for the FIRST of a and b to be returned and simply return the
   // winning value
-  var firstValue = yield select([a, b], true);
+  var firstValue = yield first([a, b], true);
 })();
 ```
